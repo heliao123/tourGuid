@@ -1,0 +1,17 @@
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:map="http://schemas.android.com/apk/res-auto"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:id="@+id/google_map"
+          android:name="com.google.android.gms.maps.SupportMapFragment"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          tools:context="com.tourguide.geofind.MapsActivity">
+
+    <Spinner
+        android:id="@+id/google_map_type_spinner"
+        android:layout_width="@dimen/google_map_type_spinner_width"
+        android:layout_height="@dimen/google_map_type_spinner_height">
+
+    </Spinner>
+</fragment>
+

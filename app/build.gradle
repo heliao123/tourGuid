@@ -10,17 +10,42 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
-    buildTypes {
+    signingConfigs {
+        debug {
+            storeFile file('C:/Users/HeLiao/Desktop/AppDevelopment/keyStore/tourGuideDebug.jks')
+            storePassword 'matrix'
+            keyAlias 'tourGuideDebugKey'
+            keyPassword 'matrix'
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file('C:/Users/HeLiao/Desktop/AppDevelopment/keyStore/tourGuideRelease.jks')
+            storePassword 'matrix'
+            keyAlias 'tourGuideReleaseKey'
+            keyPassword 'matrix'
         }
     }
+
+    buildTypes {
+        release {
+            applicationIdSuffix '.release'
+//            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            applicationIdSuffix '.debug'
+            signingConfig signingConfigs.debug
+            debuggable true
+        }
+    }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.google.android.gms:play-services:9.6.1'
 }

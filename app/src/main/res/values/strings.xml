@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">tourGuide</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_google_place">Map</string>
 
     <string-array name="google_map_type_array">
         <item>Normal</item>

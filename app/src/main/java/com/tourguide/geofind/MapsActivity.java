@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -21,9 +22,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PointOfInterest;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
-        AdapterView.OnItemSelectedListener {
+        AdapterView.OnItemSelectedListener, GoogleMap.OnPoiClickListener {
 
     private GoogleMap mMap;
     LocationManager mLocationManager;
@@ -77,6 +79,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
+        mMap.setOnPoiClickListener(this);
+
     }
 
     @Override
@@ -88,5 +92,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onPoiClick(PointOfInterest pointOfInterest) {
+        Toast.makeText(getApplicationContext(), "Clicked: " +
+                               pointOfInterest.name + "\nPlace ID:" + pointOfInterest.placeId +
+                               "\nLatitude:" + pointOfInterest.latLng.latitude +
+                               " Longitude:" + pointOfInterest.latLng.longitude,
+                       Toast.LENGTH_SHORT).show();
     }
 }
